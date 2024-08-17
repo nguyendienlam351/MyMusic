@@ -1,17 +1,17 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { colors } from '../constants/color'
 import { fontFamilies } from '../constants/fonts'
 import { fontSize, spacing } from '../constants/dimensions'
 
-const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/2428851f-c910-4a82-953b-63cfa1a5134e/artwork-440x440.jpg"
+const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/4bc7191b-d494-450e-ae1f-2f74c932bfae/artwork-440x440.jpg"
 
 const SongCart = () => {
     return (
         <TouchableOpacity style={styles.container}>
             <Image source={{ uri: imgUrl }} style={styles.coverImage} />
-            <Text style={styles.title}>Follow Back</Text>
-            <Text style={styles.artist}>LXNGVX</Text>
+            <Text style={styles.title}>jealous</Text>
+            <Text style={styles.artist}>The Trinity</Text>
         </TouchableOpacity>
     )
 }

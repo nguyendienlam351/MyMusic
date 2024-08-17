@@ -3,12 +3,14 @@ import React from 'react'
 import { colors } from '../constants/color';
 import Header from '../components/Header';
 import SongCartWithCaterory from '../components/SongCartWithCaterory';
+import FloatingPlayer from '../components/FloatingPlayer';
 
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Header />
             <FlatList data={[1, 2, 3, 4, 5]} renderItem={SongCartWithCaterory} />
+            <FloatingPlayer />
         </View>
     );
 }
