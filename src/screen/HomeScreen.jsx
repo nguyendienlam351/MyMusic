@@ -1,15 +1,14 @@
-import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { View, StyleSheet, FlatList } from 'react-native'
+import React from 'react'
 import { colors } from '../constants/color';
 import Header from '../components/Header';
-import { fontFamilies } from '../constants/fonts';
-import { fontSize } from '../constants/dimensions';
+import SongCartWithCaterory from '../components/SongCartWithCaterory';
 
 const HomeScreen = () => {
     return (
         <View style={styles.container}>
             <Header />
-            <Text style={styles.headerText}>Recommended for you</Text>
+            <FlatList data={[1, 2, 3, 4, 5]} renderItem={SongCartWithCaterory} />
         </View>
     );
 }
@@ -21,9 +20,4 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.background
     },
-    headerText: {
-        color: colors.textPrimary,
-        fontSize: fontSize.md,
-        fontFamily: fontFamilies.bold
-    }
 })

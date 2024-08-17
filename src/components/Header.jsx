@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { colors } from '../constants/color'
 import { iconSize, spacing } from '../constants/dimensions'
