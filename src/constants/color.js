@@ -3,5 +3,7 @@ export const colors = {
     textPrimary: "#EAF0FF",
     textSecondary: "#A5C0FF",
     iconPrimary: "#EAF0FF",
-    iconSecondary: "08996B8"
+    iconSecondary: "#8996B8",
+    minimumTintColor: "#FFFFFF",
+    maximumTintColor: "#555B6A"
 }

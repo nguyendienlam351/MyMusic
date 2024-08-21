@@ -7,23 +7,24 @@ import { colors } from '../constants/color'
 
 export const GotoPreviousButton = ({ size = iconSize.lg }) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.85}>
             <FontAwesome6 name={"backward"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
 }
 
 export const PlayPauseButton = ({ size = iconSize.lg }) => {
+    const isPlaying = true;
     return (
-        <TouchableOpacity>
-            <FontAwesome6 name={true ? "pause" : "play"} size={size} color={colors.iconPrimary} />
+        <TouchableOpacity activeOpacity={0.85}>
+            <FontAwesome6 name={isPlaying ? "pause" : "play"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
 }
 
 export const GotoNextButton = ({ size = iconSize.lg }) => {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.85}>
             <FontAwesome6 name={"forward"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
