@@ -1,6 +1,5 @@
 import { TouchableOpacity } from 'react-native'
 import React from 'react'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import { iconSize } from '../constants/dimensions'
 import { colors } from '../constants/color'
