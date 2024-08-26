@@ -12,7 +12,7 @@ export const recommendedSongs = [
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/2428851f-c910-4a82-953b-63cfa1a5134e/artwork-440x440.jpg',
     },
     {
-        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp',
+        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp3',
         title: 'Mortals - Slowed',
         artist: 'Warriyo',
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/ca6b8f51-f2be-44aa-84b8-4228d04ee896/artwork-440x440.jpg',
@@ -30,7 +30,7 @@ export const recommendedSongs = [
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/2428851f-c910-4a82-953b-63cfa1a5134e/artwork-440x440.jpg',
     },
     {
-        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp',
+        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp3',
         title: 'Mortals - Slowed',
         artist: 'Warriyo',
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/ca6b8f51-f2be-44aa-84b8-4228d04ee896/artwork-440x440.jpg',
@@ -48,7 +48,7 @@ export const recommendedSongs = [
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/2428851f-c910-4a82-953b-63cfa1a5134e/artwork-440x440.jpg',
     },
     {
-        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp',
+        url: 'https://xvntomxpdrmphztuqnii.supabase.co/storage/v1/object/public/my-music/3.mp3',
         title: 'Mortals - Slowed',
         artist: 'Warriyo',
         artwork: 'https://linkstorage.linkfire.com/medialinks/images/ca6b8f51-f2be-44aa-84b8-4228d04ee896/artwork-440x440.jpg',

@@ -7,11 +7,7 @@ import TrackPlayer from 'react-native-track-player'
 
 const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/4bc7191b-d494-450e-ae1f-2f74c932bfae/artwork-440x440.jpg"
 
-const SongCart = ({ item, containerStyle, imageStyle }) => {
-    const handlePlay = async (item) => {
-        await TrackPlayer.add(item);
-        await TrackPlayer.play();
-    }
+const SongCart = ({ item, containerStyle, imageStyle, handlePlay }) => {
     return (
         <TouchableOpacity
             onPress={() => handlePlay(item)}
