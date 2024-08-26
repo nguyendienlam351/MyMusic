@@ -5,12 +5,12 @@ import { fontSize, spacing } from '../constants/dimensions'
 import { colors } from '../constants/color'
 import { fontFamilies } from '../constants/fonts'
 
-const SongCartWithCaterory = () => {
+const SongCartWithCaterory = ({ item }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.headerText}>Recommended for you</Text>
+            <Text style={styles.headerText}>{item.title}</Text>
             <FlatList
-                data={[1, 2, 3, 4, 5]}
+                data={item.songs}
                 renderItem={SongCart}
                 horizontal={true}
                 ItemSeparatorComponent={

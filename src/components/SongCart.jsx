@@ -3,15 +3,22 @@ import React from 'react'
 import { colors } from '../constants/color'
 import { fontFamilies } from '../constants/fonts'
 import { fontSize, spacing } from '../constants/dimensions'
+import TrackPlayer from 'react-native-track-player'
 
 const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/4bc7191b-d494-450e-ae1f-2f74c932bfae/artwork-440x440.jpg"
 
-const SongCart = ({ containerStyle, imageStyle }) => {
+const SongCart = ({ item, containerStyle, imageStyle }) => {
+    const handlePlay = async (item) => {
+        await TrackPlayer.add(item);
+        await TrackPlayer.play();
+    }
     return (
-        <TouchableOpacity style={[styles.container, containerStyle]}>
-            <Image source={{ uri: imgUrl }} style={[styles.coverImage, imageStyle]} />
-            <Text style={styles.title} numberOfLines={1}>jealous</Text>
-            <Text style={styles.artist}>The Trinity</Text>
+        <TouchableOpacity
+            onPress={() => handlePlay(item)}
+            style={[styles.container, containerStyle]}>
+            <Image source={{ uri: item.artwork }} style={[styles.coverImage, imageStyle]} />
+            <Text style={styles.title} numberOfLines={1}>{item?.title}</Text>
+            <Text style={styles.artist}>{item?.artist}</Text>
         </TouchableOpacity>
     )
 }
