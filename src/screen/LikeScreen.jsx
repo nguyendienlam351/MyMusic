@@ -20,7 +20,7 @@ const LikeScreen = () => {
             </View>
             <FlatList
                 ListHeaderComponent={
-                    <Text style={styles.headingText}>Liked Song</Text>
+                    <Text style={styles.headingText}>Liked Songs</Text>
                 }
                 data={[1, 2, 3, 4, 5, 6, 7, 8]}
                 renderItem={() =>

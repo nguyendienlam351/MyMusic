@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet } from 'react-native'
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screen/HomeScreen';
@@ -9,17 +9,15 @@ const Stack = createNativeStackNavigator();
 
 const StackNavigation = () => {
     return (
-        <View>
-            <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
-                initialRouteName='HOME_SCREEN'>
-                <Stack.Screen name="HOME_SCREEN" component={HomeScreen} />
-                <Stack.Screen name="LIKE_SCREEN" component={LikeScreen} />
-                <Stack.Screen name="PLAYER_SCREEN" component={PlayerScreen} />
-            </Stack.Navigator>
-        </View>
+        <Stack.Navigator
+            screenOptions={{
+                headerShown: false
+            }}
+            initialRouteName='HOME_SCREEN'>
+            <Stack.Screen name="HOME_SCREEN" component={HomeScreen} />
+            <Stack.Screen name="LIKE_SCREEN" component={LikeScreen} />
+            <Stack.Screen name="PLAYER_SCREEN" component={PlayerScreen} />
+        </Stack.Navigator>
     )
 }
 
