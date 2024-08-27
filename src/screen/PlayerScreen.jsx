@@ -1,5 +1,5 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { useState } from 'react'
 import { colors } from '../constants/color'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -8,16 +8,46 @@ import { fontFamilies } from '../constants/fonts'
 import PlayerRepeatToggle from '../components/PlayerRepeatToggle'
 import PlayerShuffleToggle from '../components/PlayerShuffleToggle'
 import PlayerProgressBar from '../components/PlayerProgressBar'
+import TrackPlayer, { useActiveTrack } from 'react-native-track-player'
+import { useNavigation } from '@react-navigation/native'
 
 const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/4bc7191b-d494-450e-ae1f-2f74c932bfae/artwork-440x440.jpg"
 
 const PlayerScreen = () => {
+    const navigation = useNavigation()
+    const activeTrack = useActiveTrack()
+    const [isMute, setIsMute] = useState(false)
+
     const isLike = false
+
+    const handleGoBack = () => {
+        navigation.goBack();
+    }
+
+    const handleToggleVolume = () => {
+        TrackPlayer.setVolume(isMute ? 1 : 0);
+        setIsMute(!isMute)
+    }
+
+    if (!activeTrack) {
+        return (
+            <View
+                style={{
+                    flex: 1,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backgroundColor: colors.background
+                }}>
+                <ActivityIndicator size={"large"} color={colors.iconPrimary} />
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
             {/* Header */}
             <View style={styles.headerContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleGoBack}>
                     <AntDesign name={"arrowleft"} color={colors.iconPrimary} size={iconSize.md} />
                 </TouchableOpacity>
                 <Text style={styles.headerText}>Playing Now</Text>
@@ -25,14 +55,14 @@ const PlayerScreen = () => {
 
             {/* Image */}
             <View style={styles.coverImageContainer}>
-                <Image source={{ uri: imgUrl }} style={styles.coverImage} />
+                <Image source={{ uri: activeTrack?.artwork }} style={styles.coverImage} />
             </View>
 
             {/* Title and artist */}
             <View style={styles.titleRowHeartContainer}>
                 <View style={styles.titleContainer}>
-                    <Text style={styles.title}>jealous</Text>
-                    <Text style={styles.artist}>The Trinity</Text>
+                    <Text style={styles.title}>{activeTrack?.title}</Text>
+                    <Text style={styles.artist}>{activeTrack?.artist}</Text>
                 </View>
 
                 <TouchableOpacity>
@@ -46,8 +76,8 @@ const PlayerScreen = () => {
             {/* player control */}
             <View style={styles.playerControlContainer}>
                 <View style={styles.volumeWrapper}>
-                    <TouchableOpacity>
-                        <Feather name={true ? "volume-x" : "volume-1"} color={colors.iconSecondary} size={iconSize.lg} />
+                    <TouchableOpacity onPress={handleToggleVolume}>
+                        <Feather name={isMute ? "volume-x" : "volume-1"} color={colors.iconSecondary} size={iconSize.lg} />
                     </TouchableOpacity>
                 </View>
                 <View style={styles.repeatShuffleWrapper}>

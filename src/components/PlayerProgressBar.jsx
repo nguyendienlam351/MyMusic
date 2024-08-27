@@ -6,16 +6,32 @@ import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import { Slider } from 'react-native-awesome-slider'
 import { useSharedValue } from 'react-native-reanimated'
 import { GotoNextButton, GotoPreviousButton, PlayPauseButton } from './PlayerControl'
+import TrackPlayer, { useProgress } from 'react-native-track-player'
+import { formatSecondsToMinutes } from '../utils';
 
 const PlayerProgressBar = () => {
-    const progress = useSharedValue(0.25);
+    const { duration, position } = useProgress();
+
+    const progress = useSharedValue(0);
     const min = useSharedValue(0);
     const max = useSharedValue(1);
+    const isSliding = useSharedValue(false);
+
+    if (!isSliding.value) {
+        progress.value = duration > 0 ? position / duration : 0;
+    }
+
+    const trackElapsedTime = formatSecondsToMinutes(position);
+    const trackRemainingtime = formatSecondsToMinutes(duration - position);
+
     return (
         <View>
             <View style={styles.timeRow}>
-                <Text style={styles.timeText}>00:50</Text>
-                <Text style={styles.timeText}>{"-"}04:00</Text>
+                <Text style={styles.timeText}>
+                    {trackElapsedTime}
+                </Text>
+                <Text style={styles.timeText}>
+                    {"-"}{trackRemainingtime}</Text>
             </View>
             <Slider
                 progress={progress}
@@ -32,6 +48,17 @@ const PlayerProgressBar = () => {
                 }}
                 thumbWidth={18}
                 style={styles.sliderContainer}
+                onSlidingStart={() => isSliding.value = true}
+                onValueChange={async (value) => {
+                    await TrackPlayer.seekTo(value * duration)
+                }}
+                onSlidingComplete={async (value) => {
+                    if (!isSliding.value) {
+                        return;
+                    }
+                    isSliding.value = false;
+                    await TrackPlayer.seekTo(value * duration)
+                }}
             />
             <View style={styles.playerPauseContainer}>
                 <GotoPreviousButton size={iconSize.xl} />

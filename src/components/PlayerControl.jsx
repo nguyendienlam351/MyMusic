@@ -3,27 +3,42 @@ import React from 'react'
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6'
 import { iconSize } from '../constants/dimensions'
 import { colors } from '../constants/color'
+import TrackPlayer, { useIsPlaying } from 'react-native-track-player'
 
 export const GotoPreviousButton = ({ size = iconSize.lg }) => {
+    const handleGotoPrevious = () => {
+        TrackPlayer.skipToPrevious();
+    }
     return (
-        <TouchableOpacity activeOpacity={0.85}>
+        <TouchableOpacity onPress={handleGotoPrevious} activeOpacity={0.85}>
             <FontAwesome6 name={"backward"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
 }
 
 export const PlayPauseButton = ({ size = iconSize.lg }) => {
-    const isPlaying = true;
+    const { playing } = useIsPlaying();
+    const handleTogglePlay = () => {
+        if (playing) {
+            TrackPlayer.pause();
+        } else {
+            TrackPlayer.play();
+        }
+    }
+
     return (
-        <TouchableOpacity activeOpacity={0.85}>
-            <FontAwesome6 name={isPlaying ? "pause" : "play"} size={size} color={colors.iconPrimary} />
+        <TouchableOpacity onPress={handleTogglePlay} activeOpacity={0.85}>
+            <FontAwesome6 name={playing ? "pause" : "play"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
 }
 
 export const GotoNextButton = ({ size = iconSize.lg }) => {
+    const handleGotoNext = () => {
+        TrackPlayer.skipToNext();
+    }
     return (
-        <TouchableOpacity activeOpacity={0.85}>
+        <TouchableOpacity onPress={handleGotoNext} activeOpacity={0.85}>
             <FontAwesome6 name={"forward"} size={size} color={colors.iconPrimary} />
         </TouchableOpacity>
     )
