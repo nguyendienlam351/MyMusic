@@ -6,12 +6,41 @@ import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import { fontFamilies } from '../constants/fonts'
 import SongCart from '../components/SongCart'
+import useLikeSongs from '../store/likeStore'
+import { useNavigation } from '@react-navigation/native'
+import FloatingPlayer from '../components/FloatingPlayer'
+import TrackPlayer from 'react-native-track-player'
 
 const LikeScreen = () => {
+    const navigation = useNavigation();
+    const { likedSongs } = useLikeSongs();
+
+    const handleGoBack = () => {
+        navigation.goBack();
+    }
+
+    const handlePlayTrack = async (selectedTrack, songs = likedSongs) => {
+        const trackIndex = songs.findIndex((track) => track.url === selectedTrack.url)
+
+        if (trackIndex === -1) {
+            return;
+        }
+        const beforeTracks = songs.slice(0, trackIndex)
+
+        const afterTracks = songs.slice(trackIndex + 1)
+
+        await TrackPlayer.reset();
+        await TrackPlayer.add(selectedTrack);
+        await TrackPlayer.add(afterTracks);
+        await TrackPlayer.add(beforeTracks);
+
+        await TrackPlayer.play();
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={handleGoBack}>
                     <AntDesign name={"arrowleft"} color={colors.iconPrimary} size={iconSize.md} />
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -22,11 +51,15 @@ const LikeScreen = () => {
                 ListHeaderComponent={
                     <Text style={styles.headingText}>Liked Songs</Text>
                 }
-                data={[1, 2, 3, 4, 5, 6, 7, 8]}
-                renderItem={() =>
+                data={likedSongs}
+                renderItem={({ item }) =>
                     <SongCart
                         containerStyle={{ width: "47%" }}
-                        imageStyle={{ height: 160, width: 160 }} />}
+                        imageStyle={{ height: 160, width: 160 }}
+                        item={item}
+                        handlePlay={(selectedTrack) => {
+                            handlePlayTrack(selectedTrack)
+                        }} />}
                 numColumns={2}
                 contentContainerStyle={{
                     paddingBottom: 500,
@@ -36,6 +69,7 @@ const LikeScreen = () => {
                     justifyContent: "space-between",
                     marginVertical: spacing.lg
                 }} />
+            <FloatingPlayer />
         </View>
     )
 }

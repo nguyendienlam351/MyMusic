@@ -4,9 +4,15 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import TrackPlayer from 'react-native-track-player';
 import { useSetupPlayer } from './src/hooks/useSetupTrackPlayer';
+import useLikeSongs from './src/store/likeStore';
 
 
 const App = () => {
+  const { loadLikeSong } = useLikeSongs();
+
+  useEffect(() => {
+    loadLikeSong();
+  }, [])
 
   //track setup player
   const onLoad = () => {
