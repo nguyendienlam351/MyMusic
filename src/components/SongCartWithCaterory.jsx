@@ -18,14 +18,12 @@ const SongCartWithCaterory = ({ item }) => {
 
         const afterTracks = songs.slice(trackIndex + 1)
 
-        console.log("----", afterTracks.length)
-
         await TrackPlayer.reset();
         await TrackPlayer.add(selectedTrack);
         await TrackPlayer.add(afterTracks);
         await TrackPlayer.add(beforeTracks);
 
-        // await TrackPlayer.play();
+        await TrackPlayer.play();
     }
 
     return (
