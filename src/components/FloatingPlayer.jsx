@@ -1,19 +1,18 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { colors } from '../constants/color'
+import React, { useMemo } from 'react'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import { fontFamilies } from '../constants/fonts'
 import { GotoNextButton, GotoPreviousButton, PlayPauseButton } from './PlayerControl'
 import { useSharedValue } from 'react-native-reanimated'
 import { Slider } from 'react-native-awesome-slider'
 import MovingText from './MovingText'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
 import TrackPlayer, { useActiveTrack, useProgress } from 'react-native-track-player'
 
 
-const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/2428851f-c910-4a82-953b-63cfa1a5134e/artwork-440x440.jpg"
-
 const FloatingPlayer = () => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const activeTrack = useActiveTrack();
     const navigation = useNavigation();
     const { duration, position } = useProgress();
@@ -74,9 +73,9 @@ const FloatingPlayer = () => {
                     <Text style={styles.artist}>{activeTrack?.artist}</Text>
                 </View>
                 <View style={styles.playerControlContainer}>
-                    <GotoPreviousButton size={iconSize.md} />
-                    <PlayPauseButton size={iconSize.lg} />
-                    <GotoNextButton size={iconSize.md} />
+                    <GotoPreviousButton size={iconSize.md} color={colors.iconPrimary} />
+                    <PlayPauseButton size={iconSize.lg} color={colors.iconPrimary} />
+                    <GotoNextButton size={iconSize.md} color={colors.iconPrimary} />
                 </View>
             </TouchableOpacity>
         </View>
@@ -85,7 +84,7 @@ const FloatingPlayer = () => {
 
 export default FloatingPlayer
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",

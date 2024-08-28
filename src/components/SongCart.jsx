@@ -1,13 +1,13 @@
 import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { colors } from '../constants/color'
+import React, { useMemo } from 'react'
 import { fontFamilies } from '../constants/fonts'
 import { fontSize, spacing } from '../constants/dimensions'
-import TrackPlayer from 'react-native-track-player'
-
-const imgUrl = "https://linkstorage.linkfire.com/medialinks/images/4bc7191b-d494-450e-ae1f-2f74c932bfae/artwork-440x440.jpg"
+import { useTheme } from '@react-navigation/native'
 
 const SongCart = ({ item, containerStyle, imageStyle, handlePlay }) => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+
     return (
         <TouchableOpacity
             onPress={() => handlePlay(item)}
@@ -21,7 +21,7 @@ const SongCart = ({ item, containerStyle, imageStyle, handlePlay }) => {
 
 export default SongCart
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
     },
     coverImage: {

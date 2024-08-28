@@ -1,12 +1,15 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import React, { useMemo } from 'react'
 import SongCart from './SongCart'
 import { fontSize, spacing } from '../constants/dimensions'
-import { colors } from '../constants/color'
 import { fontFamilies } from '../constants/fonts'
 import TrackPlayer from 'react-native-track-player'
+import { useTheme } from '@react-navigation/native'
 
 const SongCartWithCaterory = ({ item }) => {
+    const { colors } = useTheme();
+
+    const styles = useMemo(() => createStyles(colors), [colors]);
 
     const handlePlayTrack = async (selectedTrack, songs = item.songs) => {
         const trackIndex = songs.findIndex((track) => track.url === selectedTrack.url)
@@ -28,7 +31,7 @@ const SongCartWithCaterory = ({ item }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headerText}>{item.title}</Text>
+            <Text style={[styles.headerText, {}]}>{item.title}</Text>
             <FlatList
                 data={item.songs}
                 renderItem={({ item }) =>
@@ -51,7 +54,7 @@ const SongCartWithCaterory = ({ item }) => {
 
 export default SongCartWithCaterory
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
         flex: 1
     },

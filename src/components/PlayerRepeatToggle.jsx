@@ -1,14 +1,15 @@
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { colors } from '../constants/color'
 import { iconSize } from '../constants/dimensions'
 import { useTrackPlayerRepeatMode } from '../hooks/useTrackPlayerRepeatMode'
 import { RepeatMode } from 'react-native-track-player'
+import { useTheme } from '@react-navigation/native'
 
 const repeatOrder = [RepeatMode.Off, RepeatMode.Track, RepeatMode.Queue]
 
 const PlayerRepeatToggle = () => {
+    const { colors } = useTheme();
     const { repeatMode, changeRepeatMode } = useTrackPlayerRepeatMode();
 
     const toggleRepeatMode = () => {
@@ -46,5 +47,3 @@ const PlayerRepeatToggle = () => {
 }
 
 export default PlayerRepeatToggle
-
-const styles = StyleSheet.create({})

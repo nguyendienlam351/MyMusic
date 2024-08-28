@@ -1,15 +1,18 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
-import { colors } from '../constants/color'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import React, { useMemo } from 'react'
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import Octicons from 'react-native-vector-icons/Octicons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import { fontFamilies } from '../constants/fonts'
+import useThemeStore from '../store/themeStore'
+import { useTheme } from '@react-navigation/native'
 
 const CustomDrawerContent = (props) => {
-    const isDarkMode = false;
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+    const { isDarkTheme, toggleTheme } = useThemeStore();
 
     const toggleDrawer = () => {
         props.navigation.toggleDrawer();
@@ -25,9 +28,9 @@ const CustomDrawerContent = (props) => {
                         color={colors.iconPrimary}
                         size={iconSize.lg} />
                 </TouchableOpacity>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => toggleTheme()}>
                     <Octicons
-                        name={isDarkMode ? "sun" : "moon"}
+                        name={isDarkTheme ? "sun" : "moon"}
                         color={colors.iconPrimary}
                         size={iconSize.lg} />
                 </TouchableOpacity>
@@ -109,7 +112,7 @@ const CustomDrawerContent = (props) => {
 
 export default CustomDrawerContent
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
         backgroundColor: colors.background,
         padding: spacing.lg

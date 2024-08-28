@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { colors } from '../constants/color'
 import { iconSize, spacing } from '../constants/dimensions'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
 
 const Header = () => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const navigation = useNavigation();
 
     const toggleDrawer = () => {
@@ -27,11 +28,7 @@ const Header = () => {
 
 export default Header
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: colors.background
-    },
+const createStyles = (colors) => StyleSheet.create({
     header: {
         flexDirection: "row",
         justifyContent: "space-between",

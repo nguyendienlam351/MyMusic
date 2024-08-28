@@ -1,17 +1,18 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { colors } from '../constants/color'
+import React, { useMemo } from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import { fontFamilies } from '../constants/fonts'
 import SongCart from '../components/SongCart'
 import useLikeSongs from '../store/likeStore'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useTheme } from '@react-navigation/native'
 import FloatingPlayer from '../components/FloatingPlayer'
 import TrackPlayer from 'react-native-track-player'
 
 const LikeScreen = () => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const navigation = useNavigation();
     const { likedSongs } = useLikeSongs();
 
@@ -76,7 +77,7 @@ const LikeScreen = () => {
 
 export default LikeScreen
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background

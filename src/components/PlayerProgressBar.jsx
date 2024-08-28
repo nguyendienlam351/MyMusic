@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import { colors } from '../constants/color'
+import React, { useMemo } from 'react'
 import { fontFamilies } from '../constants/fonts'
 import { fontSize, iconSize, spacing } from '../constants/dimensions'
 import { Slider } from 'react-native-awesome-slider'
@@ -8,8 +7,11 @@ import { useSharedValue } from 'react-native-reanimated'
 import { GotoNextButton, GotoPreviousButton, PlayPauseButton } from './PlayerControl'
 import TrackPlayer, { useProgress } from 'react-native-track-player'
 import { formatSecondsToMinutes } from '../utils';
+import { useTheme } from '@react-navigation/native'
 
 const PlayerProgressBar = () => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
     const { duration, position } = useProgress();
 
     const progress = useSharedValue(0);
@@ -71,7 +73,7 @@ const PlayerProgressBar = () => {
 
 export default PlayerProgressBar
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     timeRow: {
         flexDirection: "row",
         justifyContent: "space-between",

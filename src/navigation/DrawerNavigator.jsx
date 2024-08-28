@@ -1,4 +1,3 @@
-import { StyleSheet } from 'react-native'
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import StackNavigation from './StackNavigation';
@@ -21,5 +20,3 @@ const DrawerNavigator = () => {
 }
 
 export default DrawerNavigator
-
-const styles = StyleSheet.create({})

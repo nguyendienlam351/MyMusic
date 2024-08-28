@@ -1,18 +1,21 @@
 import { View, StyleSheet, FlatList } from 'react-native'
-import React from 'react'
-import { colors } from '../constants/color';
+import React, { useMemo } from 'react'
 import Header from '../components/Header';
 import SongCartWithCaterory from '../components/SongCartWithCaterory';
 import FloatingPlayer from '../components/FloatingPlayer';
 import { songsWithCategory } from '../data/songsWithCategory';
+import { useTheme } from '@react-navigation/native';
 
 const HomeScreen = () => {
+    const { colors } = useTheme();
+    const styles = useMemo(() => createStyles(colors), [colors]);
+
     return (
         <View style={styles.container}>
             <Header />
             <FlatList
                 data={songsWithCategory}
-                renderItem={SongCartWithCaterory}
+                renderItem={({ item }) => <SongCartWithCaterory item={item} />}
                 contentContainerStyle={{
                     paddingBottom: 100
                 }} />
@@ -23,7 +26,7 @@ const HomeScreen = () => {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({
+const createStyles = (colors) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: colors.background

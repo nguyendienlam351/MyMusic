@@ -1,4 +1,3 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React, { useEffect } from 'react'
 import Animated, { Easing, useAnimatedStyle, useSharedValue, withDelay, withRepeat, withTiming } from 'react-native-reanimated'
 
@@ -31,5 +30,3 @@ const MovingText = ({ text, animationThreshold, style }) => {
 }
 
 export default MovingText
-
-const styles = StyleSheet.create({})

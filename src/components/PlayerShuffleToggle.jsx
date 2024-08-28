@@ -1,11 +1,12 @@
-import { StyleSheet, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
 import React from 'react'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import { colors } from '../constants/color'
 import { iconSize } from '../constants/dimensions'
 import TrackPlayer from 'react-native-track-player'
+import { useTheme } from '@react-navigation/native'
 
 const PlayerShuffleToggle = () => {
+    const { colors } = useTheme();
     const shuffleSongs = async () => {
         let queue = await TrackPlayer.getQueue();
         await TrackPlayer.reset();
@@ -24,5 +25,3 @@ const PlayerShuffleToggle = () => {
 }
 
 export default PlayerShuffleToggle
-
-const styles = StyleSheet.create({})
