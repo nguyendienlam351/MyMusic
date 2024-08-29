@@ -14,5 +14,6 @@ export const songsWithCategory = [
         songs: nCSSongs
     },
 ]
-//password A63ey#H5W9TdFru
-//supabase.com 
+
+//database: supabase.com
+//password: A63ey#H5W9TdFru
