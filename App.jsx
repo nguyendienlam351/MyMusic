@@ -7,18 +7,26 @@ import useLikeSongs from './src/store/likeStore';
 import { darkTheme } from './src/theme/darkTheme';
 import { lightTheme } from './src/theme/lightTheme';
 import useThemeStore from './src/store/themeStore';
-import { useColorScheme } from 'react-native';
+import BootSplash from "react-native-bootsplash";
 
 
 const App = () => {
-  const scheme = useColorScheme()
-  const { isDarkTheme, toggleTheme } = useThemeStore();
+  const { isDarkTheme, loadTheme } = useThemeStore();
   const { loadLikeSong } = useLikeSongs();
 
   useEffect(() => {
-    loadLikeSong();
-    scheme === "light" ? toggleTheme(false) : toggleTheme(true)
-  }, [scheme])
+    loadApp()
+  }, [])
+
+  const loadApp = async () => {
+    let loadLikeSongDone = await loadLikeSong();
+
+    let loadThemeDone = await loadTheme();
+
+    if (loadLikeSongDone && loadThemeDone) {
+      await BootSplash.hide({ fade: true });
+    }
+  }
 
   //track setup player
   const onLoad = () => {

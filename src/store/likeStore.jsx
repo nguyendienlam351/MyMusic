@@ -26,6 +26,7 @@ const useLikeSongs = create((set) => ({
             if (likedSongs) {
                 set({ likedSongs: JSON.parse(likedSongs) });
             }
+            return true
         } catch (error) { }
     },
 }));
