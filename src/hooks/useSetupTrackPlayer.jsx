@@ -13,14 +13,15 @@ const setupPlayer = async () => {
             Capability.Pause,
             Capability.SkipToNext,
             Capability.SkipToPrevious,
-            Capability.Stop,
+            Capability.SeekTo
         ],
         compactCapabilities: [
             Capability.Play,
             Capability.Pause,
             Capability.SkipToNext,
             Capability.SkipToPrevious,
-            Capability.Stop,],
+            Capability.SeekTo
+        ],
     });
     await TrackPlayer.setVolume(0.5);
     await TrackPlayer.setRepeatMode(RepeatMode.Queue)

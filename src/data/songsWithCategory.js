@@ -1,4 +1,4 @@
-import { recommendedSongs } from "./songs";
+import { nCSSongs, newReleaseSongs, recommendedSongs } from "./songs";
 
 export const songsWithCategory = [
     {
@@ -7,11 +7,11 @@ export const songsWithCategory = [
     },
     {
         title: "New Release",
-        songs: recommendedSongs
+        songs: newReleaseSongs
     },
     {
         title: "NCS Songs",
-        songs: recommendedSongs
+        songs: nCSSongs
     },
 ]
 //password A63ey#H5W9TdFru

@@ -20,4 +20,9 @@ module.exports = async function () {
         console.log('Event.RemotePrevious');
         TrackPlayer.skipToPrevious();
     });
+
+    TrackPlayer.addEventListener(Event.RemoteSeek, (event) => {
+        console.log('Event.RemoteSeek', event);
+        TrackPlayer.seekTo(event.position);
+    });
 }

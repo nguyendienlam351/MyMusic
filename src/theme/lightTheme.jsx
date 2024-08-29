@@ -4,12 +4,12 @@ export const lightTheme = {
     ...DefaultTheme,
     colors: {
         ...DefaultTheme.colors,
-        background: "#F7FAFF",
-        textPrimary: "#091123",
-        textSecondary: "#8996BB",
-        iconPrimary: "#091127",
-        iconSecondary: "#8996B8",
-        minimumTintColor: "#091227",
-        maximumTintColor: "#D3D7DF"
+        background: "#E5E7EC",
+        textPrimary: "#c38518",
+        textSecondary: "#875906",
+        iconPrimary: "#281d08",
+        iconSecondary: "#af976c",
+        minimumTintColor: "#302614",
+        maximumTintColor: "#dedad3"
     },
 }

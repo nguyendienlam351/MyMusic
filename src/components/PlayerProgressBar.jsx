@@ -63,9 +63,9 @@ const PlayerProgressBar = () => {
                 }}
             />
             <View style={styles.playerPauseContainer}>
-                <GotoPreviousButton size={iconSize.xl} />
-                <PlayPauseButton size={iconSize.xl} />
-                <GotoNextButton size={iconSize.xl} />
+                <GotoPreviousButton size={iconSize.xl} color={colors.iconPrimary} />
+                <PlayPauseButton size={iconSize.xl} color={colors.iconPrimary} />
+                <GotoNextButton size={iconSize.xl} color={colors.iconPrimary} />
             </View>
         </View>
     )

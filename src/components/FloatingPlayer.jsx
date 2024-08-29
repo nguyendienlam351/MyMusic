@@ -70,7 +70,7 @@ const FloatingPlayer = () => {
                         style={styles.title}
                         animationThreshold={20} />
                     {/* <Text style={styles.title}>Follow Back</Text> */}
-                    <Text style={styles.artist}>{activeTrack?.artist}</Text>
+                    <Text numberOfLines={1} style={styles.artist}>{activeTrack?.artist}</Text>
                 </View>
                 <View style={styles.playerControlContainer}>
                     <GotoPreviousButton size={iconSize.md} color={colors.iconPrimary} />

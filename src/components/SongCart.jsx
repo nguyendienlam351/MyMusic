@@ -14,7 +14,7 @@ const SongCart = ({ item, containerStyle, imageStyle, handlePlay }) => {
             style={[styles.container, containerStyle]}>
             <Image source={{ uri: item.artwork }} style={[styles.coverImage, imageStyle]} />
             <Text style={styles.title} numberOfLines={1}>{item?.title}</Text>
-            <Text style={styles.artist}>{item?.artist}</Text>
+            <Text style={styles.artist} numberOfLines={1}>{item?.artist}</Text>
         </TouchableOpacity>
     )
 }
